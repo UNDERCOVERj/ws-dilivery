@@ -9,7 +9,7 @@
     <button>click +1</button>
     <div id='count'>1</div>
     <script>
-        var ws = new WebSocket("wss://localhost:5000/channel");
+        var ws = new WebSocket("ws://localhost:5000/channel?a=b");
 
         ws.onopen = function() { 
             console.log("Connection open ..."); 
