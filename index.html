@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>click +1</button>
+    <div id='count'>1</div>
+    <script>
+        var ws = new WebSocket("wss://localhost:5000/channel");
+
+        ws.onopen = function() { 
+            console.log("Connection open ..."); 
+            // ws.send("Hello WebSockets!");
+        };
+
+        ws.onmessage = function(e) {
+            console.log(e);
+            document.querySelector('#count').innerText = e.data;
+        };
+
+        ws.onclose = function() {
+            console.log("Connection closed.");
+        };
+        // console.log(io);
+        // var socket = io('http://localhost:5000/test');
+        var button = document.querySelector('button');
+        // socket.on('chat-ret', function(val) {
+        //     document.querySelector('#count').innerText = val;
+        // })
+        button.onclick = function() {
+            ws.send(+document.querySelector('#count').innerText.trim())
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (+xhr.readyState === 4 && +xhr.status === 200) {
+                console.log(xhr);
+            }
+        }
+        xhr.open('GET', '/a');
+        xhr.send(null);
+    </script>
+</body>
+</html>
