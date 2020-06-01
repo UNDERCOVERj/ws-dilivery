@@ -9,7 +9,7 @@ wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
         console.log('terminal receive: ' + message);
         console.log('terminal return: ' + (+message + 1))
-        ws.send(+message + 1);
+        ws.send(String(+message + 1));
     });
 });
 

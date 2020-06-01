@@ -1,5 +1,5 @@
 # ws-dilivery
-node转发websocket
+node转发websocket的demo
 
 npm install
 node mid.js
